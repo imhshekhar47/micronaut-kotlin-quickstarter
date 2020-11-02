@@ -1,8 +1,6 @@
 micronaut:
-  application:
-    name: micronaut-kotlin-quickstarter
-  server:
-    port: 8080
+  application.name: micronaut-kotlin-quickstarter
+  server.port: 8080
   router:
     static-resources:
       swagger:
@@ -11,3 +9,29 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+#  security:
+#    authentication: bearer
+#    enabled: true # turns on security and secures every endpoint by default.
+#    endpoints:
+#      endpoints:
+#        login:
+#          enabled: true
+#        logout:
+#          enabled: true
+#    token:
+#      jwt:
+#        enabled: true
+#        signatures:
+#          secret:
+#            generator:
+#              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:himanshushsekhar}"'
+#              jws-algorithm: HS256
+
+  security:
+      authentication: bearer  # <1>
+      token:
+        jwt:
+          signatures:
+            secret:
+              generator: # <2>
+                secret: ${JWT_GENERATOR_SIGNATURE_SECRET:SET_ENV_JWT_GENERATOR_SIGNATURE_SECRET}

@@ -31,6 +31,7 @@ micronaut {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -41,14 +42,19 @@ dependencies {
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-http-server-netty")
-
-    kapt("io.micronaut.configuration:micronaut-openapi")
-    implementation("io.swagger.core.v3:swagger-annotations")
-
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     kapt("io.micronaut:micronaut-inject-java:$micronautVersion")
+
+    // Swagger config
+    kapt("io.micronaut.configuration:micronaut-openapi")
+    implementation("io.swagger.core.v3:swagger-annotations")
+
+    // Security, jwt
+    kapt("io.micronaut.security:micronaut-security-annotations")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+
 }
 
 the<DependencyManagementExtension>().apply {
